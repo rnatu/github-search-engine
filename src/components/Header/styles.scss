@@ -1,0 +1,87 @@
+header {
+  height: 210px;
+  background-color: var(--gray-800);
+  border-top: 8px solid var(--blue-300);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 24px;
+    p {
+      font-size: 1.75rem;
+      color: var(--white-150);
+      font-weight: 300;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .search-bar {
+    margin-top: 32px;
+    padding: 0 10px;
+    
+  }
+
+  form {
+    background-color: white;
+    border-radius: 999px;
+
+    max-width: 712px;
+    height: 42px;
+
+    margin: 0 auto;
+    padding: 0 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: hidden;
+
+    .icon-search {
+      display: flex;
+      gap: 13px;
+      margin-left: 15px;
+
+      flex: 1;
+    }
+
+    input {
+      border: none;
+      width: 100%;
+      height: 30px;
+
+      &::placeholder {
+        color: var(--gray-800);
+        opacity: 0.5;
+      }
+    }
+
+    .actions-btn {
+      display: flex;
+      gap: 17px;
+
+      .clear-btn {
+        background: none;
+        margin-top: 3px;
+        margin-left: 10px;
+        border: none;        
+      }
+
+      .submit-btn {
+        height: 45px;
+        width: 134px;
+        margin-right: -11px;
+
+        border: none;
+        background-color: var(--blue-100);
+
+        color: var(--white-150);
+      }
+    }
+  }
+}
