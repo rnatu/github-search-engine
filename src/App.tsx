@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Home } from "./pages";
-import { User } from "./pages/User";
+import { SearchPage } from "./pages/SearchPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/:user" component={User} />
+        <Route path="/search" component={SearchPage} />
       </Switch>
     </BrowserRouter>
   );
