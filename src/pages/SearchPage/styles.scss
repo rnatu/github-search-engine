@@ -1,4 +1,4 @@
-main {
+.user-search {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,84 +9,96 @@ main {
   margin-top: 42px;
 
   padding: 0 10px;
-}
 
-.user-dashboard {
-  border-radius: 8px;
-  .user-card {
-    background-color: var(--gray-800);
-    color: var(--gray-200);
+  .user-dashboard {
     border-radius: 8px;
+    .user-card {
+      background-color: var(--gray-800);
+      color: var(--gray-200);
+      border-radius: 8px;
 
-    display: flex;
-    padding: 32px;
+      display: flex;
+      padding: 32px;
 
-    .avatar {
-      img {
-        border-radius: 999px;
+      .avatar {
+        img {
+          border-radius: 999px;
+        }
+      }
+
+      .user-description {
+        margin-left: 25px;
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        span,
+        p {
+          font-size: 1rem;
+        }
+
+        span {
+          margin-left: 32px;
+          font-weight: 300;
+        }
+
+        p {
+          font-weight: 400;
+          margin-top: 8px;
+        }
+
+        p + p {
+          margin: 20px 0;
+
+          a {
+            color: #1681ff;
+          }
+        }
       }
     }
 
-    .user-description {
-      margin-left: 25px;
-      h1 {
-        font-size: 1.5rem;
-      }
+    .user-search-options {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: -22px;
 
-      span,
-      p {
-        font-size: 1rem;
-      }
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      span {
-        margin-left: 32px;
-        font-weight: 300;
-      }
+        background-color: var(--blue-100);
+        border: none;
+        border-radius: 8px;
 
-      p {
-        font-weight: 400;
-        margin-top: 8px;
-      }
+        height: 42px;
+        width: 222px;
 
-      p + p {
-        margin: 20px 0;
+        color: var(--white-150);
 
-        a {
-          color: #1681ff;
+        img {
+          margin-right: 8px;
         }
       }
     }
   }
 
-  .user-search-options {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: -22px;
-
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background-color: var(--blue-100);
-      border: none;
-      border-radius: 8px;
-
-      height: 42px;
-      width: 222px;
-
-      color: var(--white-150);
-
-      img {
-        margin-right: 8px;
-      }
+  .repository-container {
+    margin-top: 30px;
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
     }
+    
   }
+  
 }
+
+
 
 @media (max-width: 768px) {
   .user-dashboard {
-    height: 300px;
+    height: 320px;
     background-color: var(--gray-800);
   }
 

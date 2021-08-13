@@ -1,4 +1,4 @@
-main {
+.presentation {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +45,7 @@ main {
 }
 
 @media (max-width: 768px) {
-  main {
+  .presentation {
     margin-top: 4px;
 
     .main-info {

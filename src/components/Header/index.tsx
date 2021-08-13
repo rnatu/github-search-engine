@@ -25,7 +25,7 @@ export function Header() {
   }
 
   return (
-    <header>
+    <header className="header-menu">
       <div className="logo">
         <a href="/">
           <h1>

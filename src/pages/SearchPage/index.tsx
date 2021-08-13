@@ -1,20 +1,36 @@
 import { Header } from "../../components/Header";
-import "./styles.scss";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useUser } from "../../hooks/useUser";
 
-//TO REMOVE
+//!TO REMOVE
 import profileImage from "../../assets/profile21.png";
-
 import gitRepositoryIcon from "../../assets/images/git-repository-icon.svg";
 import gitStarIcon from "../../assets/images/git-star-icon.svg";
-import { useState } from "react";
+
+import "./styles.scss";
+import { useParams } from "react-router-dom";
+import { SearchCard } from "../../components/SearchCard";
+
+type ParamType = {
+  user: string;
+};
 
 export function SearchPage() {
   const [searchOption, setSearchOptions] = useState("");
+  const { user } = useParams<ParamType>();
+
+  const { setUsername } = useUser();
+
+  useEffect(() => {
+    setUsername(user);
+    setSearchOptions('');
+  }, [setUsername, user]);
 
   return (
     <>
       <Header />
-      <main>
+      <main className="user-search">
         <section className="user-dashboard">
           <div className="user-card">
             <div className="avatar">
@@ -47,9 +63,21 @@ export function SearchPage() {
           </div>
         </section>
 
-        {searchOption === "repositories" && <h1>Repositorios</h1>}
+        {searchOption === "repositories" && (
+          <div className="repository-container">
+            <h1>21 Repositories</h1>
+            <SearchCard data={'sdad'}/>
+            <SearchCard data={'sdad'}/>
+          </div>
+        )}
 
-        {searchOption === "starred" && <h1>Starred</h1>}
+        {searchOption === "starred" && (
+           <div className="repository-container">
+           <h1>22 Starreds</h1>
+           <SearchCard data={'sdad'}/>
+           <SearchCard data={'sdad'}/>
+         </div>
+        )}
       </main>
     </>
   );

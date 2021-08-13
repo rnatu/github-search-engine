@@ -8,7 +8,7 @@ export function Home() {
     <>
       <Header />
 
-      <main>
+      <main className="presentation">
         <section className="main-title">
           <h1>Github</h1>
           <span>Where the world build software</span>
