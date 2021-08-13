@@ -14,16 +14,25 @@ export function Header() {
   function handleSearchUser(event: FormEvent) {
     event.preventDefault();
 
+    if (user === "") return;
+
     history.push(`/${user}`);
+  }
+
+  function handleClearInput(event: FormEvent) {
+    event.preventDefault();
+    setUser("");
   }
 
   return (
     <header>
       <div className="logo">
-        <p>
-          <strong>Github</strong> Search Engine
-        </p>
-        <img src={copyImg} alt="Github logo" />
+        <a href="/">
+          <h1>
+            <strong>Github</strong> Search Engine
+          </h1>
+          <img src={copyImg} alt="Github logo" />
+        </a>
       </div>
 
       <div className="search-bar">
@@ -38,12 +47,8 @@ export function Header() {
             />
           </div>
           <div className="actions-btn">
-            <button className="clear-btn">
-              <img
-                src={clearIcon}
-                alt="clear input"
-                onClick={() => setUser("")}
-              />
+            <button className="clear-btn" onClick={(e) => handleClearInput(e)}>
+              <img src={clearIcon} alt="clear input" />
             </button>
             <button type="submit" className="submit-btn">
               Search

@@ -4,18 +4,22 @@ header {
   border-top: 8px solid var(--blue-300);
 
   .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 24px;
-    p {
-      font-size: 1.75rem;
-      color: var(--white-150);
-      font-weight: 300;
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      gap: 1rem;
 
-      strong {
-        font-weight: 700;
+      h1 {
+        font-size: 1.75rem;
+        color: var(--white-150);
+        font-weight: 300;
+
+        strong {
+          font-weight: 700;
+        }
       }
     }
   }
