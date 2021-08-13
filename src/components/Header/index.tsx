@@ -1,15 +1,20 @@
 import "./styles.scss";
 
 import copyImg from "../../assets/images/github-icon.svg";
-import closeIcon from "../../assets/images/close-icon.svg";
+import clearIcon from "../../assets/images/clear-icon.svg";
 import searchIcon from "../../assets/images/search-icon.svg";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export function Header() {
-  function handleSubmit(event: FormEvent) {
+  const [user, setUser] = useState("");
+  const history = useHistory();
+
+  function handleSearchUser(event: FormEvent) {
     event.preventDefault();
-    console.log(event);
+
+    history.push(`/${user}`);
   }
 
   return (
@@ -22,14 +27,23 @@ export function Header() {
       </div>
 
       <div className="search-bar">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSearchUser}>
           <div className="icon-search">
             <img src={searchIcon} alt="search icon" />
-            <input type="text" placeholder="username" />
+            <input
+              type="text"
+              placeholder="username"
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+            />
           </div>
           <div className="actions-btn">
             <button className="clear-btn">
-              <img src={closeIcon} alt="clear input" />
+              <img
+                src={clearIcon}
+                alt="clear input"
+                onClick={() => setUser("")}
+              />
             </button>
             <button type="submit" className="submit-btn">
               Search
