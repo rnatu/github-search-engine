@@ -1,36 +1,44 @@
 import { Header } from "../components/Header";
-import demoImage  from '../assets/images/demo-image.png';
+import demoImage from "../assets/images/demo-image.png";
 
+import "./styles.scss";
 
 export function Home() {
   return (
     <>
-      <Header isHomePage />
+      <Header />
 
       <main>
-        <div className="title">
+        <section className="main-title">
           <h1>Github</h1>
           <span>Where the world build software</span>
-        </div>
+        </section>
 
-        <div>
+        <section className="main-info">
           <div className="description">
             <p>
-              Millions of developers and companies build, ship, and maintain
-              their software on GitHub—the largest and most advanced development
-              platform in the world.
+              GitHub is a web-based version-control and collaboration platform
+              for software developers. Microsoft, the biggest single contributor
+              to GitHub, initiated an acquisition of GitHub for $7.5 billion in
+              June, 2018. GitHub, which is delivered through a
+              software-as-a-service (SaaS) business model, was started in 2008
+              and was founded on Git, an open source code management system
+              created by Linus Torvalds to make software builds faste
             </p>
             <p>
-              It was commonly used to host open-source projects. As of January
-              2020, GitHub reports having over 40 million users and more than
-              190 million repositories (including at least 28 million public
-              repositories). It is the largest source code host as of April 2020
+              Git is used to store the source code for a project and track the
+              complete history of all changes to that code. It allows developers
+              to collaborate on a project more effectively by providing tools
+              for managing possibly conflicting changes from multiple
+              developers. GitHub allows developers to change, adapt and improve
+              software from its public repositories for free, but it charges for
+              private repositories, offering various paid plans.
             </p>
           </div>
-          <div>
+          <div className="demo-image">
             <img src={demoImage} alt="" />
           </div>
-        </div>
+        </section>
       </main>
     </>
   );
