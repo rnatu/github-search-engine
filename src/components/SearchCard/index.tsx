@@ -1,29 +1,98 @@
+import axios from "axios";
+
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+
+import { Loading } from "../Loading";
+
 import "./styles.scss";
 
-export function SearchCard(props: any) {
+interface SearchCardProps {
+  login: string;
+  searchBy: string;
+}
+
+type RepositoriesType = {
+  id: number;
+  name: string;
+  html_url: string;
+  created_at: string;
+  updated_at: string;
+  description: string;
+  language: string;
+};
+
+export function SearchCard({ login, searchBy }: SearchCardProps) {
+  const [searchData, setSearchData] = useState<RepositoriesType[]>([]);
+  const [isDataFound, setIsDataFound] = useState<Boolean>();
+
+  useEffect(() => {
+    const source = axios.CancelToken.source();
+
+    (async function getSearchData() {
+      try {
+        if (searchBy === "repository") {
+          const { data } = await api.get(
+            `https://api.github.com/users/${login}/repos`,
+            { cancelToken: source.token }
+          );
+
+          setSearchData(data);
+          setIsDataFound(true);
+          return;
+        }
+
+        if (searchBy === "starred") {
+          const { data } = await api.get(
+            `https://api.github.com/users/${login}/starred`,
+            { cancelToken: source.token }
+          );
+
+          setSearchData(data);
+          setIsDataFound(true);
+          return;
+        }
+      } catch (err) {
+        setIsDataFound(false);
+      }
+    })();
+
+    return () => {
+      source.cancel();
+    };
+  }, [login, searchBy]);
+
   return (
-    <main className="search-content">
-      <div className="search-card">
-        <header>
-          <a href="/">ignite-aulas</a>
-          <div>
-            <span>Created At - 08/03/2021</span>
-            <span>Updated At - 07/07/2021</span>
-          </div>
-        </header>
+    <>
+      {isDataFound === undefined && <Loading />}
 
-        <div className="resume">
-          <p>
-            Essa é uma aplicação onde o meu principal objetivo foi adicionar
-            features a um projeto já existente. Utilizei como base a minha
-            solução desenvolvida do desafio obrigatório:
-            ignite-desafio-criando-aplicacao-do-zero"
-          </p>
-          <span>Language - JavaScript</span>
-        </div>
+      <div className="amount-title">
+        {
+          <h1>
+            {searchBy === "repository" ? "Repositories" : "Starred"} -{" "}
+            {searchData.length}
+          </h1>
+        }
       </div>
-    </main>
 
-    
+      <main className="search-content">
+        {searchData.map((result) => (
+          <div className="search-card" key={result.id}>
+            <header>
+              <a href={result.html_url}>{result.name}</a>
+              <div>
+                <span>Created At - {result.created_at}</span>
+                <span>Updated At - {result.updated_at}</span>
+              </div>
+            </header>
+
+            <div className="resume">
+              <p>{result.description}</p>
+              <span>{result.language}</span>
+            </div>
+          </div>
+        ))}
+      </main>
+    </>
   );
 }

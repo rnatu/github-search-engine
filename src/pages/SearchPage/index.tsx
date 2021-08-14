@@ -5,19 +5,21 @@ import { api } from "../../services/api";
 
 import { SearchCard } from "../../components/SearchCard";
 import { Header } from "../../components/Header";
-import { Loading } from '../../components/Loading'
+import { Loading } from "../../components/Loading";
 
 import gitRepositoryIcon from "../../assets/images/git-repository-icon.svg";
 import gitStarIcon from "../../assets/images/git-star-icon.svg";
-import searchError from "../../assets/images/search-error.svg";
 
 import "./styles.scss";
+import axios from "axios";
+import { NotFound } from "../../components/NotFound";
 
 type ParamType = {
   user: string;
 };
 
 type UserDataType = {
+  login: string;
   name: string;
   location: string;
   bio: string;
@@ -26,15 +28,20 @@ type UserDataType = {
 };
 
 export function SearchPage() {
+  const { user } = useParams<ParamType>();
+
   const [searchOption, setSearchOptions] = useState("");
   const [userData, setUserData] = useState({} as UserDataType);
-  const { user } = useParams<ParamType>();
   const [isDataFound, setIsDataFound] = useState<Boolean>();
 
   useEffect(() => {
+    const source = axios.CancelToken.source();
+
     (async function getUserData() {
       try {
-        const { data } = await api.get(`https://api.github.com/users/${user}`);
+        const { data } = await api.get(`https://api.github.com/users/${user}`, {
+          cancelToken: source.token,
+        });
 
         setUserData(data);
 
@@ -45,23 +52,19 @@ export function SearchPage() {
         setIsDataFound(false);
       }
     })();
+
+    return () => {
+      source.cancel();
+    };
   }, [user]);
 
   return (
     <>
       <Header />
 
-      {isDataFound === undefined && (
-        <Loading />
-      )}
+      {isDataFound === undefined && <Loading />}
 
-      {isDataFound === false && (
-        <div className="data-not-found">
-          <img src={searchError} alt="" />
-          <h2>Oops, something wrong happened</h2>
-          <h3>Please, Try search again</h3>
-        </div>
-      )}
+      {isDataFound === false && <NotFound />}
 
       {isDataFound && (
         <main className="user-search">
@@ -83,7 +86,7 @@ export function SearchPage() {
               </div>
             </div>
             <div className="user-search-options">
-              <button onClick={() => setSearchOptions("repositories")}>
+              <button onClick={() => setSearchOptions("repository")}>
                 <img src={gitRepositoryIcon} alt="Repository icon" />
                 Search for Repositories
               </button>
@@ -94,19 +97,9 @@ export function SearchPage() {
             </div>
           </section>
 
-          {searchOption === "repositories" && (
+          {searchOption && (
             <div className="repository-container">
-              <h1>21 Repositories</h1>
-              <SearchCard data={"sdad"} />
-              <SearchCard data={"sdad"} />
-            </div>
-          )}
-
-          {searchOption === "starred" && (
-            <div className="repository-container">
-              <h1>22 Starreds</h1>
-              <SearchCard data={"sdad"} />
-              <SearchCard data={"sdad"} />
+              <SearchCard login={userData.login} searchBy={searchOption} />
             </div>
           )}
         </main>
