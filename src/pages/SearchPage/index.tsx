@@ -40,6 +40,7 @@ export function SearchPage() {
       };
 
       setUserData(filteredData);
+      setSearchOptions('')
     })();
   }, [user]);
 
