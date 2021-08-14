@@ -1,12 +1,12 @@
 import { FormEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { KeyboardEvent } from "react";
 
 import copyImg from "../../assets/images/github-icon.svg";
 import clearIcon from "../../assets/images/clear-icon.svg";
 import searchIcon from "../../assets/images/search-icon.svg";
 
 import "./styles.scss";
-import { KeyboardEvent } from "react";
 
 export function Header() {
   const [user, setUser] = useState("");
