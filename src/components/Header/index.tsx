@@ -1,15 +1,22 @@
-import "./styles.scss";
+import { FormEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import copyImg from "../../assets/images/github-icon.svg";
 import clearIcon from "../../assets/images/clear-icon.svg";
 import searchIcon from "../../assets/images/search-icon.svg";
 
-import { FormEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
+import "./styles.scss";
+import { KeyboardEvent } from "react";
 
 export function Header() {
   const [user, setUser] = useState("");
   const history = useHistory();
+
+  function handleEnterSubmit(event: KeyboardEvent) {
+    if(event.key === 'Enter') {
+      handleSearchUser(event);
+    }
+  }
 
   function handleSearchUser(event: FormEvent) {
     event.preventDefault();
@@ -42,12 +49,13 @@ export function Header() {
             <input
               type="text"
               placeholder="username"
-              onChange={(e) => setUser(e.target.value)}
+              onChange={(event) => setUser(event.target.value)}
               value={user}
+              onKeyDown={(event) => handleEnterSubmit(event)}
             />
           </div>
           <div className="actions-btn">
-            <button className="clear-btn" onClick={(e) => handleClearInput(e)}>
+            <button className="clear-btn" onClick={(event) => handleClearInput(event)}>
               <img src={clearIcon} alt="clear input" />
             </button>
             <button type="submit" className="submit-btn">

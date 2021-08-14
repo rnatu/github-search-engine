@@ -28,6 +28,7 @@ export function SearchCard({ login, searchBy }: SearchCardProps) {
 
   useEffect(() => {
     const source = axios.CancelToken.source();
+    setIsDataFound(undefined);
 
     (async function getSearchData() {
       try {
@@ -64,35 +65,39 @@ export function SearchCard({ login, searchBy }: SearchCardProps) {
 
   return (
     <>
-      {isDataFound === undefined && <Loading />}
-
-      <div className="amount-title">
-        {
-          <h1>
-            {searchBy === "repository" ? "Repositories" : "Starred"} -{" "}
-            {searchData.length}
-          </h1>
-        }
-      </div>
-
-      <main className="search-content">
-        {searchData.map((result) => (
-          <div className="search-card" key={result.id}>
-            <header>
-              <a href={result.html_url}>{result.name}</a>
-              <div>
-                <span>Created At - {result.created_at}</span>
-                <span>Updated At - {result.updated_at}</span>
-              </div>
-            </header>
-
-            <div className="resume">
-              <p>{result.description}</p>
-              <span>{result.language}</span>
-            </div>
+      {isDataFound === undefined ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="amount-title">
+            {
+              <h1>
+                {searchBy === "repository" ? "Repositories" : "Starred"} -{" "}
+                {searchData.length}
+              </h1>
+            }
           </div>
-        ))}
-      </main>
+
+          <main className="search-content">
+            {searchData.map((result) => (
+              <div className="search-card" key={result.id}>
+                <header>
+                  <a href={result.html_url}>{result.name}</a>
+                  <div>
+                    <span>Created At - {result.created_at}</span>
+                    <span>Updated At - {result.updated_at}</span>
+                  </div>
+                </header>
+
+                <div className="resume">
+                  <p>{result.description}</p>
+                  <span>{result.language}</span>
+                </div>
+              </div>
+            ))}
+          </main>
+        </>
+      )}
     </>
   );
 }

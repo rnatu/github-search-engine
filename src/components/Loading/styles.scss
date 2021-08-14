@@ -9,11 +9,13 @@
     color: var(--gray-800);
     font-weight: 500;
   }
+
   .lds-dual-ring {
     display: inline-block;
     width: 80px;
     height: 80px;
   }
+
   .lds-dual-ring:after {
     content: " ";
     display: block;
@@ -25,6 +27,7 @@
     border-color: var(--blue-100) transparent var(--blue-100) transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
+
   @keyframes lds-dual-ring {
     0% {
       transform: rotate(0deg);

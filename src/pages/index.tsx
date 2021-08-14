@@ -1,4 +1,5 @@
 import { Header } from "../components/Header";
+
 import demoImage from "../assets/images/demo-image.png";
 
 import "./styles.scss";

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -6,13 +8,12 @@ import { api } from "../../services/api";
 import { SearchCard } from "../../components/SearchCard";
 import { Header } from "../../components/Header";
 import { Loading } from "../../components/Loading";
+import { NotFound } from "../../components/NotFound";
 
 import gitRepositoryIcon from "../../assets/images/git-repository-icon.svg";
 import gitStarIcon from "../../assets/images/git-star-icon.svg";
 
 import "./styles.scss";
-import axios from "axios";
-import { NotFound } from "../../components/NotFound";
 
 type ParamType = {
   user: string;
