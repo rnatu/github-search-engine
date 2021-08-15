@@ -1,12 +1,9 @@
-.search-content {
-  .search-card {
-    width: 100%;
-    margin-top: 10px;
-    padding: 24px 32px;
-
+  .search-content {
+    padding: 15px;
     border-radius: 8px;
-
     background-color: var(--gray-800);
+    margin-top: 10px;
+
     color: var(--gray-200);
 
     header {
@@ -35,6 +32,7 @@
 
     .resume {
       p {
+        word-break: break-all;
         margin-top: 13px;
         font-size: 1rem;
       }
@@ -48,4 +46,4 @@
       }
     }
   }
-}
+

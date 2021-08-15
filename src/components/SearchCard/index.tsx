@@ -77,33 +77,31 @@ export function SearchCard({ login, searchBy }: SearchCardProps) {
         <Loading />
       ) : (
         <>
-          <div className="amount-title">
+          <header className="amount-title">
             {
               <h1>
                 {searchBy === "repository" ? "Repositories" : "Starred"} -{" "}
                 {searchData.length}
               </h1>
             }
-          </div>
+          </header>
 
-          <main className="search-content">
-            {searchData.map((result) => (
-              <div className="search-card" key={result.id}>
-                <header>
-                  <a href={result.html_url}>{result.name}</a>
-                  <div>
-                    <span>Created At - {dateFormatter(result.created_at)}</span>
-                    <span>Updated At - {dateFormatter(result.updated_at)}</span>
-                  </div>
-                </header>
-
-                <div className="resume">
-                  <p>{result.description}</p>
-                  <span>{result.language}</span>
+          {searchData.map((result) => (
+            <main className="search-content" key={result.id}>
+              <header>
+                <a href={result.html_url}>{result.name}</a>
+                <div>
+                  <span>Created At - {dateFormatter(result.created_at)}</span>
+                  <span>Updated At - {dateFormatter(result.updated_at)}</span>
                 </div>
+              </header>
+
+              <div className="resume">
+                <p>{result.description}</p>
+                <span>Most used language - {result.language}</span>
               </div>
-            ))}
-          </main>
+            </main>
+          ))}
         </>
       )}
     </>

@@ -24,22 +24,6 @@
     }
   }
 
-  .sign-in-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 32px;
-
-    button {
-      height: 42px;
-      width: 243px;
-      background-color: var(--blue-100);
-      border: transparent;
-
-      color: var(--white-150);
-    }
-  }
-
   .search-bar {
     margin-top: 32px;
     padding: 0 10px;
