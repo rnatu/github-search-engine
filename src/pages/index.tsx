@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 
-import demoImage from "../assets/images/demo-image.png";
+import demoImage from "../assets/images/demo-image.jpg";
 
 import "./styles.scss";
 
@@ -11,8 +11,8 @@ export function Home() {
 
       <main className="presentation">
         <section className="main-title">
-          <h1>Github</h1>
-          <span>Where the world build software</span>
+          <h1>Github Search Engine</h1>
+          <span>A simple and efficient search</span>
         </section>
 
         <section className="main-info">
@@ -37,6 +37,7 @@ export function Home() {
             </p>
           </div>
           <div className="demo-image">
+            <p>Take a look at how it works.</p>
             <img src={demoImage} alt="" />
           </div>
         </section>

@@ -28,8 +28,12 @@ textarea {
   font: 400 16px "Roboto", sans-serif;
 }
 
-button {
+button, a {
   cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
 
 @media (max-width: 1080px) {
