@@ -63,6 +63,14 @@ export function SearchCard({ login, searchBy }: SearchCardProps) {
     };
   }, [login, searchBy]);
 
+  function dateFormatter(date: string): string {
+    const currentLocale = navigator.language ? navigator.language : "pt-BR";
+
+    const formattedDate = new Date(date).toLocaleDateString(currentLocale);
+
+    return formattedDate;
+  }
+
   return (
     <>
       {isDataFound === undefined ? (
@@ -84,8 +92,8 @@ export function SearchCard({ login, searchBy }: SearchCardProps) {
                 <header>
                   <a href={result.html_url}>{result.name}</a>
                   <div>
-                    <span>Created At - {result.created_at}</span>
-                    <span>Updated At - {result.updated_at}</span>
+                    <span>Created At - {dateFormatter(result.created_at)}</span>
+                    <span>Updated At - {dateFormatter(result.updated_at)}</span>
                   </div>
                 </header>
 
